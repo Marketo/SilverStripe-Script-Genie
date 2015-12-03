@@ -35,6 +35,10 @@ class GenieExtension extends DataExtension
     }
 
     public function AsJSON() {
-        return json_encode($this->owner->toMap());
+        $map = $this->owner->toMap();
+        if (method_exists($this->owner, 'genieMap')) {
+            $map = $this->owner->genieMap();
+        }
+        return json_encode($map);
     }
 }
