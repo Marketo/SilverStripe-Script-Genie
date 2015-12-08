@@ -3,6 +3,11 @@
 ## Configuration
 
 ```
+ObjectType:
+  regenerate_scripts: true:
+  extensions:
+    - GenieExtension
+
 Injector:
   GenieScriptService:
     properties:
@@ -21,3 +26,4 @@ Injector:
 
 For CalculatedField above, the system will calculate an appropriate value based on the provided arguments, in this
 case it will perform a `strototime` on '-2 weeks', followed by converting it to a date in the provided format.
+

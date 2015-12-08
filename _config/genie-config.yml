@@ -1,0 +1,11 @@
+---
+Name: genie_admin_config
+---
+ModelAdmin:
+  extensions:
+    - GenieAdminExtension
+
+Injector:
+  GenieAdminExtension:
+    properties:
+      scriptService: %$GenieScriptService

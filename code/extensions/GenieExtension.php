@@ -16,27 +16,29 @@ class GenieExtension extends DataExtension
 
     public function regenerateTypeData()
     {
-        
+        if (Config::inst()->get($this->owner->class, 'regenerate_scripts')) {
+			singleton('GenieScriptService')->generateScriptFilesFor($this->owner->class);
+		}
     }
 
     public function onAfterWrite()
     {
-        
+        $this->regenerateTypeData();
     }
     
     public function onAfterDelete()
     {
-        
+        $this->regenerateTypeData();
     }
 
     public function onAfterPublish()
     {
-
+		$this->regenerateTypeData();
     }
 
     public function onAfterUnpublish()
     {
-
+		$this->regenerateTypeData();
     }
 
     public function AsJSON() {

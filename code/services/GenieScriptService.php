@@ -78,6 +78,7 @@ class GenieScriptService
 					// only record the basename if it's not a relative folder to the project
 					$files[] = basename($targetFile);
 				}
+
 				Filesystem::makeFolder(dirname($targetFile));
 				file_put_contents($targetFile, $output);
 			}
@@ -138,7 +139,17 @@ class GenieScriptService
 		if (!$one->hasExtension('GenieExtension')) {
 			throw new Exception("Please enable the rub the genie's bottle for $type");
 		}
-        $config = isset($this->typeConfiguration[$type]) ? $this->typeConfiguration[$type] : array('default' => array());
+		$classes = array_values(ClassInfo::ancestry($type));
+		$classes = array_reverse($classes);
+		
+		$config = array('default' => array());
+		foreach ($classes as $cls) {
+			if (isset($this->typeConfiguration[$cls])) {
+				$config = $this->typeConfiguration[$cls];
+				break;
+			}
+		}
+        
         return $config;
     }
 }
