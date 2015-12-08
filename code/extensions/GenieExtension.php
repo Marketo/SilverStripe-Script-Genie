@@ -8,6 +8,11 @@
  */
 class GenieExtension extends DataExtension
 {
+	protected $jsonFields;
+	
+	public function setJSONFields($f) {
+		$this->jsonFields = $f;
+	}
 
     public function regenerateTypeData()
     {
@@ -35,10 +40,18 @@ class GenieExtension extends DataExtension
     }
 
     public function AsJSON() {
-        $map = $this->owner->toMap();
-        if (method_exists($this->owner, 'genieMap')) {
+		$map = array();
+		if (method_exists($this->owner, 'genieMap')) {
             $map = $this->owner->genieMap();
-        }
+        } else if (isset($this->jsonFields)) {
+			 foreach ($this->jsonFields as $f) {
+				 $f = trim($f);
+				 $map[$f] = $this->owner->$f;
+			 }
+		} else {
+			$map = $this->owner->toMap();
+		}
+        
         return json_encode($map);
     }
 }
