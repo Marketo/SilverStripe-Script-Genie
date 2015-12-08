@@ -1,0 +1,22 @@
+{
+    "name": "marketo/silverstripe-script-genie",
+    "description": "A SilverStripe module which produces static JSON data files from specific models on-demand or onAfter{Write,Publish}",
+
+    "type": "silverstripe-module",
+
+    "require": {
+        "silverstripe/cms": "3.*",
+        "composer/installers": "*"
+    },
+
+    "license": "BSD-3-Clause",
+
+    "authors": [
+        {
+            "name": "Marcus Nyeholt",
+            "email": "marcus@silverstripe.com.au"
+        }
+    ],
+
+    "minimum-stability": "dev"
+}
