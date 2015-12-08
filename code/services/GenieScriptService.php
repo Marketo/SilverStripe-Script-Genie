@@ -13,8 +13,11 @@ class GenieScriptService
 
     public $defaultPath = 'assets/scripts';
 
+    public function generateScriptDataFor($type, $file = null, $stage = 'Live') {
+		if ($stage) {
+			Versioned::reading_stage($stage);
+		}
 
-    public function generateScriptDataFor($type, $file = null) {
         if (!class_exists($type)) {
             throw new Exception("Invalid type defined, no data generated");
         }
