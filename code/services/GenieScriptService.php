@@ -14,7 +14,7 @@ class GenieScriptService
     public $defaultPath = 'assets/scripts';
 
     public function generateScriptDataFor($type, $file = null, $stage = 'Live') {
-		if ($stage) {
+		if ($stage && Object::has_extension($type, 'Versioned')) {
 			Versioned::reading_stage($stage);
 		}
 
@@ -140,7 +140,7 @@ class GenieScriptService
     protected function configFor($type) {
 		$one = singleton($type);
 		if (!$one->hasExtension('GenieExtension')) {
-			throw new Exception("Please enable the rub the genie's bottle for $type");
+			throw new Exception("Please rub the genie's bottle for $type");
 		}
 		$classes = array_values(ClassInfo::ancestry($type));
 		$classes = array_reverse($classes);
