@@ -9,3 +9,7 @@ Injector:
   GenieAdminExtension:
     properties:
       scriptService: %$GenieScriptService
+      
+Director:
+  rules:
+    'scriptgenie': 'ScriptGenieController'
