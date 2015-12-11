@@ -28,8 +28,14 @@ class GenieScriptService
 		
         // TODO - allow for specifying things like strtotime things for dates in some manner
         $rules = isset($config['filter']) ? $config['filter'] : null;
-
-        $list = $type::get();
+		
+		$list = $type::get();
+		if (isset($config['generator'])) {
+			$generator = Injector::inst()->create($config['generator']);
+			if ($generator) {
+				$list = $generator->getList();
+			}
+		}
 
         if ($rules) {
 			$list = $this->applyRulesToList($list, $rules);
