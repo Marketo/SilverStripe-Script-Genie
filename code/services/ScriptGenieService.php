@@ -3,7 +3,7 @@
 /**
  * @author marcus
  */
-class GenieScriptService
+class ScriptGenieService
 {
     /**
      *
@@ -53,7 +53,7 @@ class GenieScriptService
 
         $list = $list->filterByCallback(function ($item) use ($setFields) {
 			// extension check was done on the type earlier, here we're just being careful
-			if ($item->hasExtension('GenieExtension') && $setFields) {
+			if ($item->hasExtension('ScriptGenieExtension') && $setFields) {
 				$item->setJSONFields($setFields);
 			}
             return $item->canView();
@@ -145,7 +145,7 @@ class GenieScriptService
 
     protected function configFor($type) {
 		$one = singleton($type);
-		if (!$one->hasExtension('GenieExtension')) {
+		if (!$one->hasExtension('ScriptGenieExtension')) {
 			throw new Exception("Please rub the genie's bottle for $type");
 		}
 		$classes = array_values(ClassInfo::ancestry($type));

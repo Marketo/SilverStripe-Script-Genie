@@ -3,12 +3,12 @@ Name: genie_admin_config
 ---
 ModelAdmin:
   extensions:
-    - GenieAdminExtension
+    - ScriptGenieAdminExtension
 
 Injector:
-  GenieAdminExtension:
+  ScriptGenieAdminExtension:
     properties:
-      scriptService: %$GenieScriptService
+      scriptService: %$ScriptGenieService
       
 Director:
   rules:

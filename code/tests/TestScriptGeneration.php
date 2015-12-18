@@ -23,7 +23,7 @@ class TestScriptGeneration extends SapphireTest {
 		));
 		$data->write();
 		
-		$svc = new GenieScriptService();
+		$svc = new ScriptGenieService();
 		$svc->typeConfiguration = array(
 			'GenieTestObject' => array(
 				'default'		=> array(
@@ -48,5 +48,5 @@ class GenieTestObject extends DataObject implements TestOnly {
 		'SecondField'	=> 'Varchar',
 	);
 	
-	private static $extensions = array('GenieExtension');
+	private static $extensions = array('ScriptGenieExtension');
 }

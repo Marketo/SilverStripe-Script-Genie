@@ -6,7 +6,7 @@
  *
  * @author marcus
  */
-class GenieExtension extends DataExtension
+class ScriptGenieExtension extends DataExtension
 {
 	protected $jsonFields;
 	
@@ -17,7 +17,7 @@ class GenieExtension extends DataExtension
     public function regenerateTypeData()
     {
         if (Config::inst()->get($this->owner->class, 'regenerate_scripts')) {
-			singleton('GenieScriptService')->generateScriptFilesFor($this->owner->class);
+			singleton('ScriptGenieService')->generateScriptFilesFor($this->owner->class);
 		}
     }
 

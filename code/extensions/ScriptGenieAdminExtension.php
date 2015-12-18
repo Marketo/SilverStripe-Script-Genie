@@ -6,19 +6,19 @@
  * 
  * @author marcus
  */
-class GenieAdminExtension extends Extension
+class ScriptGenieAdminExtension extends Extension
 {
 	private static $allowed_actions = array('regenerate');
 	private $modelClass;
 	
 	/**
-	 * @var GenieScriptService
+	 * @var ScriptGenieService
 	 */
 	public $scriptService;
 	
     public function updateEditForm(Form $form) {
 		$sng = singleton($this->modelClass());
-		if ($sng->hasExtension('GenieExtension')) {
+		if ($sng->hasExtension('ScriptGenieExtension')) {
 			$form->Actions()->push(FormAction::create('regenerate', 'Regenerate Data'));
 		}
 	}

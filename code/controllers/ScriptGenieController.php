@@ -12,11 +12,11 @@ class ScriptGenieController extends Controller {
 	);
 	
 	private static $dependencies = array(
-		'scriptService'		=> '%$GenieScriptService'
+		'scriptService'		=> '%$ScriptGenieService'
 	);
 	
 	/**
-	 * @var GenieScriptService
+	 * @var ScriptGenieService
 	 */
 	public $scriptService;
 	
