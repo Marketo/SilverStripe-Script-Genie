@@ -8,17 +8,18 @@
  */
 class ScriptGenieExtension extends DataExtension
 {
-	protected $jsonFields;
-	
-	public function setJSONFields($f) {
-		$this->jsonFields = $f;
-	}
+    protected $jsonFields;
+    
+    public function setJSONFields($f)
+    {
+        $this->jsonFields = $f;
+    }
 
     public function regenerateTypeData()
     {
         if (Config::inst()->get($this->owner->class, 'regenerate_scripts')) {
-			singleton('ScriptGenieService')->generateScriptFilesFor($this->owner->class);
-		}
+            singleton('ScriptGenieService')->generateScriptFilesFor($this->owner->class);
+        }
     }
 
     public function onAfterWrite()
@@ -33,26 +34,27 @@ class ScriptGenieExtension extends DataExtension
 
     public function onAfterPublish()
     {
-		$this->regenerateTypeData();
+        $this->regenerateTypeData();
     }
 
     public function onAfterUnpublish()
     {
-		$this->regenerateTypeData();
+        $this->regenerateTypeData();
     }
 
-    public function AsJSON() {
-		$map = array();
-		if (method_exists($this->owner, 'genieMap')) {
+    public function AsJSON()
+    {
+        $map = array();
+        if (method_exists($this->owner, 'genieMap')) {
             $map = $this->owner->genieMap();
-        } else if (isset($this->jsonFields)) {
-			 foreach ($this->jsonFields as $f) {
-				 $f = trim($f);
-				 $map[$f] = $this->owner->$f;
-			 }
-		} else {
-			$map = $this->owner->toMap();
-		}
+        } elseif (isset($this->jsonFields)) {
+            foreach ($this->jsonFields as $f) {
+                $f = trim($f);
+                $map[$f] = $this->owner->$f;
+            }
+        } else {
+            $map = $this->owner->toMap();
+        }
         
         return json_encode($map);
     }
