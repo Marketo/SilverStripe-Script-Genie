@@ -20,6 +20,7 @@ Injector:
               "CalculatedField": %strtotime|-2 weeks|Y-m-d H:i:s% 
               "OtherProp": "with things"
             order: FieldName DESC, Other ASC
+            limit: 10
             template: TemplateName
             fields: ID,LastEdited,Title [optional, otherwise all fields returned]
             rootObject: TopLevelJsObjectName [optional, defaults to Window]
