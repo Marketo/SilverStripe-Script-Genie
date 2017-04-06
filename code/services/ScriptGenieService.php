@@ -49,6 +49,10 @@ class ScriptGenieService
             $setFields = explode(',', $setFields);
         }
 
+        if (isset($config['limit'])) {
+            $list = $list->limit($config['limit']);
+        }
+
         $order = isset($config['order']) ? $config['order'] : 'ID DESC';
         $list = $list->sort($order);
 
